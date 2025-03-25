@@ -32,7 +32,7 @@ class AddImgTagHook {
 		// 检查是否在白名单中
 		if ($config->get( 'AddImgTagWhitelist' )) {
 			if (!in_array($url,$config->get( 'AddImgTagWhitelistDomainsList' ))) {
-				return Html::element('span', ['style' => 'color: red;'],
+				return Html::element('span', ['style' => 'color: hsl(340,100%, 40%);'],
 				wfMessage( 'addimgtag-whitelist-notice' )->params( $url )->text()
 				);
 			};
@@ -42,7 +42,7 @@ class AddImgTagHook {
 		// 检查是否在黑名单中
 		else if ($config->get( 'AddImgTagBlacklist' )) {
 			if (in_array($url,$config->get( 'AddImgTagBlacklistDomainsList' ))) {
-				return Html::element('span', ['style' => 'color: red;'],
+				return Html::element('span', ['style' => 'color: hsl(340,100%, 40%);'],
 				wfMessage( 'addimgtag-blacklist-notice' )->params( $url )->text()
 				);
 			};
