@@ -1,0 +1,39 @@
+{
+	"name": "ImgRepair",
+	"author": "awajie",
+	"url": "https://github.com/ajdgg/mediawiki-extensions-ImgRepair",
+	"description": "为mediawiki-1.43.0添加img标签",
+	"version": "0.0.1",
+	"license-name": "GPL-2.0-or-later",
+	"type": "parserhook",
+	"manifest_version": 2,
+    "AutoloadClasses": {
+        "ImgRepairHook": "ImgRepairHook.php"
+    },
+	"Hooks": {
+		"ParserFirstCallInit": "ImgRepairHook::onParserFirstCallInit"
+	},
+	"MessagesDirs": {
+		"ImgRepair": [
+			"i18n"
+		]
+	},
+	"config": {
+		"ImgRepairWhitelist": {
+		    "description": "是否启用白名单",
+		    "value": false
+		},
+		"ImgRepairWhitelistDomainsList": {
+		    "description": "白名单域名列表",
+		    "value": []
+		},
+		"ImgRepairBlacklist": {
+		    "description": "是否启用黑名单",
+		    "value": false
+		},
+		"ImgRepairBlacklistDomainsList": {
+		    "description": "黑名单域名列表",
+		    "value": []
+		}
+	}
+}

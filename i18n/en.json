@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+		"authors": [
+			"awajie"
+		]
+	},
+    "not-on-the-whitelist": "Domain $1 is not in the whitelist.",
+    "in-the-blacklist": "Domain $1 is in the blacklist."
+}

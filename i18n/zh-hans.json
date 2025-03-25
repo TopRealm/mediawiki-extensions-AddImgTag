@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+		"authors": [
+			"awajie"
+		]
+	},
+    "imrepair-whitelist-notice": "域名 $1 不在白名单中。",
+    "in-the-blacklist": "域名 $1 在黑名单中。"
+}
