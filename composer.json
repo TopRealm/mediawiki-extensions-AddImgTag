@@ -1,0 +1,25 @@
+{
+	"name": "ajdgg/mediawiki-addimgtag",
+	"description": "MediaWiki extension to add <img> tag support.",
+	"type": "mediawiki-extension",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "awajie",
+			"homepage": "https://github.com/ajdgg"
+		},
+		{
+			"name": "ZoruaFox",
+			"homepage": "https://github.com/ZoruaFox"
+		}
+	],
+	"require": {
+		"php": ">=7.4",
+		"mediawiki/mediawiki": ">=1.43"
+	},
+	"autoload": {
+		"psr-4": {
+			"AddImgTag\\": "includes/"
+		}
+	}
+}

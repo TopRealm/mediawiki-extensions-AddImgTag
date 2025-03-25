@@ -1,13 +1,23 @@
-<?php 
+<?php
+/**
+ * AddImgTag extension
+ *
+ * @file
+ * @ingroup Extensions
+ * @author awajie
+ * @author ZoruaFox
+ * @license GPL-2.0-or-later
+ */
+
 use MediaWiki\MediaWikiServices;
 
-class ImgRepairHook {
+class AddImgTagHook {
 	public static function onParserFirstCallInit( $parser ) {
-		$parser->setHook( 'img', array( __CLASS__, 'ImgRepair' ) );
+		$parser->setHook( 'img', array( __CLASS__, 'renderImgTag' ) );
         return true;
 	}
 
-	public static function ImgRepair ( $input, array $args, Parser $parser, PPFrame $frame ) {
+	public static function renderImgTag ( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$argsList = [
 			'src' => $args['src'],
@@ -20,20 +30,20 @@ class ImgRepairHook {
 		$url = parse_url($args['src'], PHP_URL_HOST);
 
 		// 检查是否在白名单中
-		if ($config->get( 'ImgRepairWhitelist' )) {
-			if (!in_array($url,$config->get( 'ImgRepairWhitelistDomainsList' ))) {
+		if ($config->get( 'AddImgTagWhitelist' )) {
+			if (!in_array($url,$config->get( 'AddImgTagWhitelistDomainsList' ))) {
 				return Html::element('span', [],
-				wfMessage( 'imrepair-whitelist-notice' )->params( $url )->text()
+				wfMessage( 'addimgtag-whitelist-notice' )->params( $url )->text()
 				);
 			};
 			return Html::element('img', $argsList);
 		}
 
 		// 检查是否在黑名单中
-		else if ($config->get( 'ImgRepairBlacklist' )) {
-			if (in_array($url,$config->get( 'ImgRepairBlacklistDomainsList' ))) {
+		else if ($config->get( 'AddImgTagBlacklist' )) {
+			if (in_array($url,$config->get( 'AddImgTagBlacklistDomainsList' ))) {
 				return Html::element('span', [],
-				wfMessage( 'in-the-blacklist' )->params( $url )->text()
+				wfMessage( 'addimgtag-blacklist-notice' )->params( $url )->text()
 				);
 			};
 			return Html::element('img', $argsList);

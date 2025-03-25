@@ -1,37 +1,37 @@
 {
-	"name": "ImgRepair",
-	"author": "awajie",
-	"url": "https://github.com/ajdgg/mediawiki-extensions-ImgRepair",
-	"description": "为mediawiki-1.43.0添加img标签",
+	"name": "AddImgTag",
+	"author": "awajie, ZoruaFox",
+	"url": "https://github.com/ajdgg/mediawiki-extensions-AddImgTag",
+	"description": "为MediaWiki 1.43和更高版本添加<img>标签支持",
 	"version": "0.0.1",
 	"license-name": "GPL-2.0-or-later",
 	"type": "parserhook",
 	"manifest_version": 2,
     "AutoloadClasses": {
-        "ImgRepairHook": "ImgRepairHook.php"
+        "AddImgTagHook": "includes/Hooks/AddImgTagHook.php"
     },
 	"Hooks": {
-		"ParserFirstCallInit": "ImgRepairHook::onParserFirstCallInit"
+		"ParserFirstCallInit": "AddImgTagHook::onParserFirstCallInit"
 	},
 	"MessagesDirs": {
-		"ImgRepair": [
+		"AddImgTag": [
 			"i18n"
 		]
 	},
 	"config": {
-		"ImgRepairWhitelist": {
+		"AddImgTagWhitelist": {
 		    "description": "是否启用白名单",
 		    "value": false
 		},
-		"ImgRepairWhitelistDomainsList": {
+		"AddImgTagWhitelistDomainsList": {
 		    "description": "白名单域名列表",
 		    "value": []
 		},
-		"ImgRepairBlacklist": {
+		"AddImgTagBlacklist": {
 		    "description": "是否启用黑名单",
 		    "value": false
 		},
-		"ImgRepairBlacklistDomainsList": {
+		"AddImgTagBlacklistDomainsList": {
 		    "description": "黑名单域名列表",
 		    "value": []
 		}

@@ -1,9 +1,9 @@
-一个小插件为mediawiki-1.43.0添加img标签解析
+一个小插件为MediaWiki 1.43和更高版本添加img标签解析
 
 ## 启用
 
 ```php
-wfLoadExtension( 'ImgRepair' );
+wfLoadExtension( 'AddImgTag' );
 ```
 
 白名单与黑名单冲突，都启用的情况下，白名单优先。
