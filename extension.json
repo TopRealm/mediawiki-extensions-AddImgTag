@@ -1,7 +1,7 @@
 {
 	"name": "AddImgTag",
 	"author": "awajie, ZoruaFox",
-	"url": "https://github.com/ajdgg/mediawiki-extensions-AddImgTag",
+	"url": "https://github.com/TopRealm/mediawiki-extensions-AddImgTag",
 	"description": "为MediaWiki 1.43和更高版本添加<img>标签支持",
 	"version": "0.0.1",
 	"license-name": "GPL-2.0-or-later",
