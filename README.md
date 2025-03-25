@@ -11,13 +11,13 @@ wfLoadExtension( 'AddImgTag' );
 ## 白名单（默认禁用）
 
 ```php
-$wgImgRepairWhitelist = true;
-$wgImgRepairWhitelistDomainsList = ['awajie.com'];
+$wgAddImgTagWhitelist = true;
+$wgAddImgTagWhitelistDomainsList = ['awajie.com'];
 ```
 
 ## 黑名单（默认禁用）
 
 ```php
-$wgImgRepairBlacklist = true;
-$wgImgRepairBlacklistDomainsList = ['awajie.com'];
+$wgAddImgTagBlacklist = true;
+$wgAddImgTagBlacklistDomainsList = ['awajie.com'];
 ```
