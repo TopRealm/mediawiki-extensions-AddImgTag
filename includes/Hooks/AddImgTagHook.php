@@ -19,8 +19,15 @@ class AddImgTagHook {
 
 	public static function renderImgTag ( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		// wikitext解析
+		$rawContent = $args['src'] ?? '';
+		$srcUrl = preg_match('/{{.*}}/', $rawContent) 
+			? $parser -> recursivePreprocess($rawContent, $frame) 
+			: $args['src'];
+		
 		$argsList = [
-			'src' => $args['src'],
+			'src' => $srcUrl,
 			'alt' => $args['alt'] ?? '',
 			'width' => $args['width'] ?? '',
 			'height' => $args['height'] ?? '',
