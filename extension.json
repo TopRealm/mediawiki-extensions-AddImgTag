@@ -1,15 +1,18 @@
 {
 	"name": "AddImgTag",
-	"author": "awajie, ZoruaFox",
+	"author": [
+                "[https://github.com/ajdgg awajie]",
+                "[https://github.com/ZoruaFox ZoruaFox]"
+        ],
 	"url": "https://github.com/TopRealm/mediawiki-extensions-AddImgTag",
-	"description": "为MediaWiki 1.43和更高版本添加<img>标签支持",
+	"descriptionmsg": "addimgtag-desc",
 	"version": "0.0.1",
 	"license-name": "GPL-2.0-or-later",
 	"type": "parserhook",
 	"manifest_version": 2,
-    "AutoloadClasses": {
-        "AddImgTagHook": "includes/Hooks/AddImgTagHook.php"
-    },
+	"AutoloadClasses": {
+        	"AddImgTagHook": "includes/Hooks/AddImgTagHook.php"
+    	},
 	"Hooks": {
 		"ParserFirstCallInit": "AddImgTagHook::onParserFirstCallInit"
 	},
@@ -20,19 +23,19 @@
 	},
 	"config": {
 		"AddImgTagWhitelist": {
-		    "description": "是否启用白名单",
+		    "descriptionmsg": "config-desc-addimgtagwhitelist",
 		    "value": false
 		},
 		"AddImgTagWhitelistDomainsList": {
-		    "description": "白名单域名列表",
+		    "descriptionmsg": "config-desc-addimgtagwhitelistdomainslist",
 		    "value": []
 		},
 		"AddImgTagBlacklist": {
-		    "description": "是否启用黑名单",
+		    "descriptionmsg": "config-desc-addimgtagblacklist",
 		    "value": false
 		},
 		"AddImgTagBlacklistDomainsList": {
-		    "description": "黑名单域名列表",
+		    "descriptionmsg": "config-desc-addimgtagblacklistdomainslist",
 		    "value": []
 		}
 	}

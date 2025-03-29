@@ -8,5 +8,9 @@
     "addimgtag": "Add Img Tag",
     "addimgtag-desc": "Adds <img> tag support for MediaWiki 1.43 and later",
     "addimgtag-whitelist-notice": "Domain $1 is not in the whitelist.",
-    "addimgtag-blacklist-notice": "Domain $1 is in the blacklist."
+    "addimgtag-blacklist-notice": "Domain $1 is in the blacklist.",
+    "config-desc-addimgtagwhitelist": "Whether or not to enable whitelisting",
+    "config-desc-addimgtagwhitelistdomainslist": "List of whitelisted domain names",
+    "config-desc-addimgtagblacklist": "Whether or not to enable blacklisting",
+    "config-desc-addimgtagblacklistdomainslist": "List of blacklisted domain names"
 }
