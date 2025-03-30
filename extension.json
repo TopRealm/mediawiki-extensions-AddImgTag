@@ -6,7 +6,7 @@
         ],
 	"url": "https://github.com/TopRealm/mediawiki-extensions-AddImgTag",
 	"descriptionmsg": "addimgtag-desc",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"license-name": "GPL-2.0-or-later",
 	"type": "parserhook",
 	"manifest_version": 2,
