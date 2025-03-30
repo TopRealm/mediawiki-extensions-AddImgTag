@@ -1,5 +1,5 @@
 name: 报告漏洞 Report Bugs
-description: 汇报 MediaWiki 软件问题 Report MediaWiki software bugs.
+description: 汇报扩展问题 Report extension bugs.
 title: "[BUG]: "
 labels: ["bug"]
 assignees:
