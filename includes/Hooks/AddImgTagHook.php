@@ -21,20 +21,20 @@ class AddImgTagHook {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		// wikitext解析
-		$rawContent = $args['src'] ?? '';
+		$rawContent = isset($args['src']) ? $args['src'] : '';
 		$srcUrl = preg_match('/{{.*}}/', $rawContent) 
 			? $parser -> recursivePreprocess($rawContent, $frame) 
-			: $args['src'];
+			: $rawContent;
 		
 		$argsList = [
 			'src' => $srcUrl,
-			'alt' => $args['alt'] ?? '',
-			'width' => $args['width'] ?? '',
-			'height' => $args['height'] ?? '',
-			'class' => $args['class'] ?? '',
-			'style' => $args['style'] ?? '',
+			'alt'    => isset($args['alt']) ? $args['alt'] : '',
+			'width'  => isset($args['width']) ? $args['width'] : '',
+			'height' => isset($args['height']) ? $args['height'] : '',
+			'class'  => isset($args['class']) ? $args['class'] : '',
+			'style'  => isset($args['style']) ? $args['style'] : '',
 		];
-		$url = parse_url($args['src'], PHP_URL_HOST);
+		$url = parse_url($rawContent, PHP_URL_HOST);
 
 		// 检查是否在白名单中
 		if ($config->get( 'AddImgTagWhitelist' )) {
