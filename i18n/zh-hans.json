@@ -6,7 +6,7 @@
 		]
 	},
     "addimgtag": "添加图像标签",
-    "addimgtag-desc": "为MediaWiki 1.43和更高版本添加<img>标签支持",
+    "addimgtag-desc": "为MediaWiki 1.43和更高版本添加<code>&lt;img&gt;</code>标签支持",
     "addimgtag-whitelist-notice": "域名 $1 不在白名单中。",
     "addimgtag-blacklist-notice": "域名 $1 在黑名单中。",
     "config-desc-addimgtagwhitelist": "是否启用白名单",

@@ -6,7 +6,7 @@
 		]
 	},
     "addimgtag": "Add Img Tag",
-    "addimgtag-desc": "Erlaubt die Nutzung von <img>-Tags in MediaWiki >= 1.43",
+    "addimgtag-desc": "Erlaubt die Nutzung von <code>&lt;img&gt;</code>-Tags in MediaWiki >= 1.43",
     "addimgtag-whitelist-notice": "Domain $1 ist nicht in der Whitelist.",
     "addimgtag-blacklist-notice": "Domain $1 ist in der Blacklist.",
     "config-desc-addimgtagwhitelist": "Whitelisting aktivieren oder nicht",
