@@ -20,20 +20,16 @@ class AddImgTagHook {
 	public static function renderImgTag ( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
-		// wikitext解析
+		// 目前仅对src部分做wikitext解析
 		$rawContent = isset($args['src']) ? $args['src'] : '';
-		$srcUrl = preg_match('/{{.*}}/', $rawContent) 
+
+		$srcUrl = $rawContent !== '' && preg_match('/{{.*}}/', $rawContent) 
 			? $parser -> recursivePreprocess($rawContent, $frame) 
 			: $rawContent;
-		
-		$argsList = [
-			'src' => $srcUrl,
-			'alt'    => isset($args['alt']) ? $args['alt'] : '',
-			'width'  => isset($args['width']) ? $args['width'] : '',
-			'height' => isset($args['height']) ? $args['height'] : '',
-			'class'  => isset($args['class']) ? $args['class'] : '',
-			'style'  => isset($args['style']) ? $args['style'] : '',
-		];
+
+
+		$argsList = self::ImgParameterArray($srcUrl, $args);
+
 		$url = parse_url($rawContent, PHP_URL_HOST);
 
 		// 检查是否在白名单中
@@ -43,21 +39,31 @@ class AddImgTagHook {
 				wfMessage( 'addimgtag-whitelist-notice' )->params( $url )->text()
 				);
 			};
-			return Html::element('img', $argsList);
 		}
 
 		// 检查是否在黑名单中
-		else if ($config->get( 'AddImgTagBlacklist' )) {
+		if ($config->get( 'AddImgTagBlacklist' )) {
 			if (in_array($url,$config->get( 'AddImgTagBlacklistDomainsList' ))) {
 				return Html::element('span', ['style' => 'color: hsl(340,100%, 40%);'],
 				wfMessage( 'addimgtag-blacklist-notice' )->params( $url )->text()
 				);
 			};
-			return Html::element('img', $argsList);
 		}
 
-		else {
-			return Html::element('img', $argsList);
-		}
+		return Html::element('img', $argsList);
+	}
+
+	public static function ImgParameterArray($srcUrl, $args = []) {
+	    $defaults = [
+			'src'    => $srcUrl,
+			'alt'    => '',
+			'title'  => '',
+			'loading' => 'lazy',
+			'width'  => '',
+			'height' => '',
+			'class'  => '',
+			'style'  => '',
+		];
+		return array_merge($defaults, $args);
 	}
 }

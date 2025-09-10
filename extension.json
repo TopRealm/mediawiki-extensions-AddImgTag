@@ -6,15 +6,22 @@
         ],
 	"url": "https://github.com/TopRealm/mediawiki-extensions-AddImgTag",
 	"descriptionmsg": "addimgtag-desc",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"license-name": "GPL-2.0-or-later",
 	"type": "parserhook",
 	"manifest_version": 2,
 	"AutoloadClasses": {
-        	"AddImgTagHook": "includes/Hooks/AddImgTagHook.php"
+        	"AddImgTagHook": "includes/Hooks/AddImgTagHook.php",
+			"AddImgParserFunHook": "includes/Hooks/AddImgParserFunHook.php"
     	},
 	"Hooks": {
-		"ParserFirstCallInit": "AddImgTagHook::onParserFirstCallInit"
+		"ParserFirstCallInit": [
+			"AddImgTagHook::onParserFirstCallInit",
+			"AddImgParserFunHook::onParserFirstCallInit"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"AddImgTagAlias": "AddImgTag.alias.php"
 	},
 	"MessagesDirs": {
 		"AddImgTag": [
