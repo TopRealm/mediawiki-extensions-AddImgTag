@@ -10,6 +10,10 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Parser;
+use PPFrame; // Global interface in MW
+use AddImgTag\Security\ImgSecurity;
+use Html; // global helper
 
 class AddImgTagHook {
 	public static function onParserFirstCallInit( $parser ) {
@@ -17,41 +21,33 @@ class AddImgTagHook {
         return true;
 	}
 
-	public static function renderImgTag ( $input, array $args, Parser $parser, PPFrame $frame ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+    public static function renderImgTag ( $input, array $args, $parser, $frame ) {
+        $config = MediaWikiServices::getInstance()->getMainConfig();
 
-		// 目前仅对src部分做wikitext解析
-		$rawContent = isset($args['src']) ? $args['src'] : '';
+        // 支持模板/解析器函数展开（保持原功能）
+        $rawContent = $args['src'] ?? '';
+        if ( $rawContent !== '' && preg_match('/{{.*}}/', $rawContent) ) {
+            $rawContent = $parser->recursivePreprocess( $rawContent, $frame );
+        }
 
-		$srcUrl = $rawContent !== '' && preg_match('/{{.*}}/', $rawContent) 
-			? $parser -> recursivePreprocess($rawContent, $frame) 
-			: $rawContent;
+        // 若 <img> 标签体内传了内容且未显式 src，可兜底采用（增强健壮性）
+        if ( $rawContent === '' && is_string( $input ) && trim( $input ) !== '' ) {
+            $rawContent = trim( $input );
+        }
 
+        $argsList = self::ImgParameterArray( $rawContent, $args );
 
-		$argsList = self::ImgParameterArray($srcUrl, $args);
+        // 验证 src
+        $validation = ImgSecurity::validateSrc( $argsList['src'] );
+        if ( !$validation['ok'] ) {
+            return ImgSecurity::buildErrorHtml( $validation['msg'], $argsList['src'] );
+        }
 
-		$url = parse_url($rawContent, PHP_URL_HOST);
+        // 属性清洗与懒加载归一
+        $argsList = ImgSecurity::sanitizeAttribs( $argsList );
 
-		// 检查是否在白名单中
-		if ($config->get( 'AddImgTagWhitelist' )) {
-			if (!in_array($url,$config->get( 'AddImgTagWhitelistDomainsList' ))) {
-				return Html::element('span', ['style' => 'color: hsl(340,100%, 40%);'],
-				wfMessage( 'addimgtag-whitelist-notice' )->params( $url )->text()
-				);
-			};
-		}
-
-		// 检查是否在黑名单中
-		if ($config->get( 'AddImgTagBlacklist' )) {
-			if (in_array($url,$config->get( 'AddImgTagBlacklistDomainsList' ))) {
-				return Html::element('span', ['style' => 'color: hsl(340,100%, 40%);'],
-				wfMessage( 'addimgtag-blacklist-notice' )->params( $url )->text()
-				);
-			};
-		}
-
-		return Html::element('img', $argsList);
-	}
+        return Html::element( 'img', $argsList );
+    }
 
 	public static function ImgParameterArray($srcUrl, $args = []) {
 	    $defaults = [

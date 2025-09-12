@@ -9,8 +9,16 @@
     "addimgtag-desc": "Adds <code>&lt;img&gt;</code> tag support for MediaWiki 1.43 and later",
     "addimgtag-whitelist-notice": "Domain $1 is not in the whitelist.",
     "addimgtag-blacklist-notice": "Domain $1 is in the blacklist.",
+    "addimgtag-invalid-src": "Invalid <code>src</code> attribute.",
+    "addimgtag-empty-src": "The <code>src</code> attribute is not set.",
+    "addimgtag-not-whitelisted-src": "The <code>src</code> attribute is not whitelisted.",
+    "addimgtag-blacklisted-src": "The <code>src</code> attribute is blacklisted.",
     "config-desc-addimgtagwhitelist": "Whether or not to enable whitelisting",
     "config-desc-addimgtagwhitelistdomainslist": "List of whitelisted domain names",
     "config-desc-addimgtagblacklist": "Whether or not to enable blacklisting",
-    "config-desc-addimgtagblacklistdomainslist": "List of blacklisted domain names"
+    "config-desc-addimgtagblacklistdomainslist": "List of blacklisted domain names",
+    "config-desc-addimgtagfixselfclosing": "Whether to try to auto close <img> tags missing '/>' before parsing (experimental)",
+    "config-desc-addimgtagallowedschemes": "Allowed URL schemes for images (evaluated before blocked list)",
+    "config-desc-addimgtagblockedschemes": "Blocked URL schemes (takes precedence if matched)",
+    "config-desc-addimgtagenhancedvalidation": "Enable enhanced validation (scheme filtering, attribute sanitization, whitelist/blacklist pattern support)"
 }

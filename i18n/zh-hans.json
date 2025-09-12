@@ -9,8 +9,16 @@
     "addimgtag-desc": "为MediaWiki 1.43和更高版本添加<code>&lt;img&gt;</code>标签支持",
     "addimgtag-whitelist-notice": "域名 $1 不在白名单中。",
     "addimgtag-blacklist-notice": "域名 $1 在黑名单中。",
+    "addimgtag-invalid-src": "无效的 <code>src</code> 属性。",
+    "addimgtag-empty-src": "未设置 <code>src</code> 属性。",
+    "addimgtag-not-whitelisted-src": "该 <code>src</code> 属性未被列入白名单。",
+    "addimgtag-blacklisted-src": "该 <code>src</code> 属性被列入黑名单。",
     "config-desc-addimgtagwhitelist": "是否启用白名单",
     "config-desc-addimgtagwhitelistdomainslist": "白名单域名列表",
     "config-desc-addimgtagblacklist": "是否启用黑名单",
-    "config-desc-addimgtagblacklistdomainslist": "黑名单域名列表"
+    "config-desc-addimgtagblacklistdomainslist": "黑名单域名列表",
+    "config-desc-addimgtagfixselfclosing": "是否尝试在解析前自动补全缺失 '/>' 的 <img> 标签（实验性）",
+    "config-desc-addimgtagallowedschemes": "允许的图片 URL 协议（优先生效）",
+    "config-desc-addimgtagblockedschemes": "被阻止的 URL 协议（匹配后立即拒绝）",
+    "config-desc-addimgtagenhancedvalidation": "启用增强校验（协议过滤、属性清洗、通配白黑名单）"
 }
