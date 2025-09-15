@@ -9,9 +9,17 @@
     "addimgtag-desc": "Erlaubt die Nutzung von <code>&lt;img&gt;</code>-Tags in MediaWiki >= 1.43",
     "addimgtag-whitelist-notice": "Domain $1 ist nicht in der Whitelist.",
     "addimgtag-blacklist-notice": "Domain $1 ist in der Blacklist.",
+    "addimgtag-invalid-src": "Ungültiges <code>src</code>-Attribut.",
+    "addimgtag-empty-src": "Das <code>src</code>-Attribut ist nicht gesetzt.",
+    "addimgtag-not-whitelisted-src": "Das <code>src</code>-Attribut ist nicht auf der Whitelist.",
+    "addimgtag-blacklisted-src": "Das <code>src</code>-Attribut steht auf der Blacklist.",
     "config-desc-addimgtagwhitelist": "Whitelisting aktivieren oder nicht",
     "config-desc-addimgtagwhitelistdomainslist": "Liste der gewhitelisteten Domains",
     "config-desc-addimgtagblacklist": "Blacklisting aktivieren oder nicht",
-    "config-desc-addimgtagblacklistdomainslist": "Liste der geblacklisteten Domains"
+    "config-desc-addimgtagblacklistdomainslist": "Liste der geblacklisteten Domains",
+    "config-desc-addimgtagfixselfclosing": "Versuchen, fehlendes '/>' bei <img>-Tags vor dem Parsen automatisch zu ergänzen (experimentell)",
+    "config-desc-addimgtagallowedschemes": "Erlaubte URL-Schemata für Bilder (wird vor der Blockliste ausgewertet)",
+    "config-desc-addimgtagblockedschemes": "Blockierte URL-Schemata (hat Vorrang bei Treffer)",
+    "config-desc-addimgtagenhancedvalidation": "Erweiterte Validierung aktivieren (Schemafilter, Attribut-Säuberung, Whitelist/Blacklist-Musterunterstützung)"
 
 }

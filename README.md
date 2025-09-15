@@ -4,7 +4,7 @@
 
 支持的标签属性：`src, alt, title, loading, width, height, class, style`
 
-> 自 0.0.4（开发中）起，引入：
+> 自 1.0.0 起，引入：
 >
 > - 协议/URL 基础校验（默认允许 http/https，可配置允许与阻止列表）
 > - 可选增强校验（启用后开启协议、属性 Sanitizer、白/黑名单模式）
