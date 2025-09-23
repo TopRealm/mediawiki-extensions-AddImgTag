@@ -4,7 +4,6 @@
 use MediaWiki\Parser\Parser;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
-use AddImgTagHook;
 
 class AddImgParserFunHook {
 
