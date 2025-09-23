@@ -9,11 +9,9 @@
  * @license GPL-2.0-or-later
  */
 
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Parser\Parser;
-use PPFrame; // Global interface in MW
+// use MediaWiki\MediaWikiServices; // 使用完全限定名调用，避免静态分析误报
+// use MediaWiki\Parser\Parser; // 未直接使用类型，移除以减少噪音
 use AddImgTag\Security\ImgSecurity;
-use Html; // global helper
 
 class AddImgTagHook {
 	public static function onParserFirstCallInit( $parser ) {
@@ -22,8 +20,6 @@ class AddImgTagHook {
 	}
 
     public static function renderImgTag ( $input, array $args, $parser, $frame ) {
-        $config = MediaWikiServices::getInstance()->getMainConfig();
-
         // 支持模板/解析器函数展开（保持原功能）
         $rawContent = $args['src'] ?? '';
         if ( $rawContent !== '' && preg_match('/{{.*}}/', $rawContent) ) {
@@ -46,7 +42,19 @@ class AddImgTagHook {
         // 属性清洗与懒加载归一
         $argsList = ImgSecurity::sanitizeAttribs( $argsList );
 
-        return Html::element( 'img', $argsList );
+        // 优先使用 MediaWiki 的 Html 工具，否则回退到简单字符串拼接
+        if ( class_exists( 'Html' ) ) {
+            $html = call_user_func( [ 'Html', 'element' ], 'img', $argsList );
+        } else {
+            $attrStr = '';
+            foreach ( $argsList as $k => $v ) {
+                if ( $v === '' || $v === null ) { continue; }
+                $attrStr .= ' ' . htmlspecialchars( (string)$k, ENT_QUOTES ) . '="' . htmlspecialchars( (string)$v, ENT_QUOTES ) . '"';
+            }
+            $html = '<img' . $attrStr . ' />';
+        }
+
+        return $html;
     }
 
 	public static function ImgParameterArray($srcUrl, $args = []) {

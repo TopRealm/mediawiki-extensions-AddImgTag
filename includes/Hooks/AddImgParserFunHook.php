@@ -4,8 +4,8 @@
 use MediaWiki\Parser\Parser;
 use MediaWiki\MediaWikiServices;
 use AddImgTag\Security\ImgSecurity;
+use MediaWiki\Html\Html;
 use AddImgTagHook;
-use Html;
 
 class AddImgParserFunHook {
 
@@ -22,6 +22,7 @@ class AddImgParserFunHook {
 			return ImgSecurity::buildErrorHtml( $validation['msg'], $argsList['src'] );
 		}
 		$argsList = ImgSecurity::sanitizeAttribs( $argsList );
+
 		$html = Html::element( 'img', $argsList );
 
 		$outputType = method_exists( $parser, 'getOutputType' ) ? $parser->getOutputType() : null;
