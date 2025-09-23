@@ -11,18 +11,13 @@
 	"type": "parserhook",
 	"manifest_version": 2,
 	"AutoloadClasses": {
-	    	"AddImgTagHook": "includes/Hooks/AddImgTagHook.php",
-			"AddImgParserFunHook": "includes/Hooks/AddImgParserFunHook.php",
-			"AddImgTag\\Security\\ImgSecurity": "includes/Security/ImgSecurity.php",
-			"AddImgTagPreprocessHook": "includes/Hooks/AddImgTagPreprocessHook.php"
-	    	},
+        	"AddImgTagHook": "includes/Hooks/AddImgTagHook.php",
+			"AddImgParserFunHook": "includes/Hooks/AddImgParserFunHook.php"
+    	},
 	"Hooks": {
 		"ParserFirstCallInit": [
 			"AddImgTagHook::onParserFirstCallInit",
 			"AddImgParserFunHook::onParserFirstCallInit"
-		],
-		"ParserBeforeInternalParse": [
-			"AddImgTagPreprocessHook::onParserBeforeInternalParse"
 		]
 	},
 	"ExtensionMessagesFiles": {
@@ -49,22 +44,6 @@
 		"AddImgTagBlacklistDomainsList": {
 		    "descriptionmsg": "config-desc-addimgtagblacklistdomainslist",
 		    "value": []
-		},
-		"AddImgTagFixSelfClosing": {
-			"descriptionmsg": "config-desc-addimgtagfixselfclosing",
-			"value": false
-		},
-		"AddImgTagAllowedSchemes": {
-			"descriptionmsg": "config-desc-addimgtagallowedschemes",
-			"value": ["http", "https"]
-		},
-		"AddImgTagBlockedSchemes": {
-			"descriptionmsg": "config-desc-addimgtagblockedschemes",
-			"value": ["data", "javascript", "vbscript", "file", "ftp", "blob"]
-		},
-		"AddImgTagEnableAdvancedValidation": {
-			"descriptionmsg": "config-desc-addimgtagenhancedvalidation",
-			"value": true
 		}
 	}
 }

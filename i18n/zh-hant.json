@@ -9,16 +9,8 @@
     "addimgtag-desc": "為MediaWiki 1.43和更高版本添加<code>&lt;img&gt;</code>標籤支持",
     "addimgtag-whitelist-notice": "網域 $1 不在白名單中。",
     "addimgtag-blacklist-notice": "網域 $1 在黑名單中。",
-    "addimgtag-invalid-src": "無效的 src 屬性。",
-    "addimgtag-empty-src": "未設定 src 屬性。",
-    "addimgtag-not-whitelisted-src": "該 src 屬性未被列入白名單。",
-    "addimgtag-blacklisted-src": "該 src 屬性被列入黑名單。",
     "config-desc-addimgtagwhitelist": "是否啟用白名單",
     "config-desc-addimgtagwhitelistdomainslist": "白名單網域列表",
     "config-desc-addimgtagblacklist": "是否啟用黑名單",
-    "config-desc-addimgtagblacklistdomainslist": "黑名單域名列表",
-    "config-desc-addimgtagfixselfclosing": "是否嘗試在解析前自動補全缺失 '/>' 的 <img> 標籤（實驗性）",
-    "config-desc-addimgtagallowedschemes": "允許的圖片 URL 通訊協定（優先生效）",
-    "config-desc-addimgtagblockedschemes": "被阻止的 URL 通訊協定（匹配後立即拒絕）",
-    "config-desc-addimgtagenhancedvalidation": "啟用增強校驗（通訊協定過濾、屬性清洗、通配白黑名單）"
+    "config-desc-addimgtagblacklistdomainslist": "黑名單域名列表"
 }

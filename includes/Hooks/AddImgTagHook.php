@@ -9,9 +9,7 @@
  * @license GPL-2.0-or-later
  */
 
-// use MediaWiki\MediaWikiServices; // 使用完全限定名调用，避免静态分析误报
-// use MediaWiki\Parser\Parser; // 未直接使用类型，移除以减少噪音
-use AddImgTag\Security\ImgSecurity;
+use MediaWiki\MediaWikiServices;
 
 class AddImgTagHook {
 	public static function onParserFirstCallInit( $parser ) {
@@ -19,43 +17,41 @@ class AddImgTagHook {
         return true;
 	}
 
-    public static function renderImgTag ( $input, array $args, $parser, $frame ) {
-        // 支持模板/解析器函数展开（保持原功能）
-        $rawContent = $args['src'] ?? '';
-        if ( $rawContent !== '' && preg_match('/{{.*}}/', $rawContent) ) {
-            $rawContent = $parser->recursivePreprocess( $rawContent, $frame );
-        }
+	public static function renderImgTag ( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
-        // 若 <img> 标签体内传了内容且未显式 src，可兜底采用（增强健壮性）
-        if ( $rawContent === '' && is_string( $input ) && trim( $input ) !== '' ) {
-            $rawContent = trim( $input );
-        }
+		// 目前仅对src部分做wikitext解析
+		$rawContent = isset($args['src']) ? $args['src'] : '';
 
-        $argsList = self::ImgParameterArray( $rawContent, $args );
+		$srcUrl = $rawContent !== '' && preg_match('/{{.*}}/', $rawContent) 
+			? $parser -> recursivePreprocess($rawContent, $frame) 
+			: $rawContent;
 
-        // 验证 src
-        $validation = ImgSecurity::validateSrc( $argsList['src'] );
-        if ( !$validation['ok'] ) {
-            return ImgSecurity::buildErrorHtml( $validation['msg'], $argsList['src'] );
-        }
 
-        // 属性清洗与懒加载归一
-        $argsList = ImgSecurity::sanitizeAttribs( $argsList );
+		$argsList = self::ImgParameterArray($srcUrl, $args);
 
-        // 优先使用 MediaWiki 的 Html 工具，否则回退到简单字符串拼接
-        if ( class_exists( 'Html' ) ) {
-            $html = call_user_func( [ 'Html', 'element' ], 'img', $argsList );
-        } else {
-            $attrStr = '';
-            foreach ( $argsList as $k => $v ) {
-                if ( $v === '' || $v === null ) { continue; }
-                $attrStr .= ' ' . htmlspecialchars( (string)$k, ENT_QUOTES ) . '="' . htmlspecialchars( (string)$v, ENT_QUOTES ) . '"';
-            }
-            $html = '<img' . $attrStr . ' />';
-        }
+		$url = parse_url($rawContent, PHP_URL_HOST);
 
-        return $html;
-    }
+		// 检查是否在白名单中
+		if ($config->get( 'AddImgTagWhitelist' )) {
+			if (!in_array($url,$config->get( 'AddImgTagWhitelistDomainsList' ))) {
+				return Html::element('span', ['style' => 'color: hsl(340,100%, 40%);'],
+				wfMessage( 'addimgtag-whitelist-notice' )->params( $url )->text()
+				);
+			};
+		}
+
+		// 检查是否在黑名单中
+		if ($config->get( 'AddImgTagBlacklist' )) {
+			if (in_array($url,$config->get( 'AddImgTagBlacklistDomainsList' ))) {
+				return Html::element('span', ['style' => 'color: hsl(340,100%, 40%);'],
+				wfMessage( 'addimgtag-blacklist-notice' )->params( $url )->text()
+				);
+			};
+		}
+
+		return Html::element('img', $argsList);
+	}
 
 	public static function ImgParameterArray($srcUrl, $args = []) {
 	    $defaults = [

@@ -1,6 +1,5 @@
 {
 	"name": "ajdgg/mediawiki-addimgtag",
-	"version": "1.0.0",
 	"description": "MediaWiki extension to add <img> tag support.",
 	"type": "mediawiki-extension",
 	"license": "GPL-2.0-or-later",
