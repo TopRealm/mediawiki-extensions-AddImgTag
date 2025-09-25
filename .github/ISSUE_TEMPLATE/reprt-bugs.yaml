@@ -9,15 +9,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        若您在使用档案馆时发现相关漏洞，请使用本模板汇报。<br>If you encountered bugs while using YouShou Archives, please report bugs here
+        若您在使用 AddImgTag 扩展时发现相关漏洞，请使用本模板汇报。<br>If you encountered bugs while using AddImgTag extension, please report bugs here.
 
-        **请注意**，若您的 Issue 与档案馆敏感信息（如令牌、密码等）有关，请使用最下方的“安全漏洞汇报”模板，请勿使用本模板。<br>NOTICE: If your issue is about security problems (tokens, passwords, etc.), please use "Report a security vulnerability" issue template, do not use this template.
+        **AddImgTag** 是一个为 MediaWiki 1.43+ 添加 `<img>` 标签和 `{{#img:}}` 解析器函数支持的扩展。<br>**AddImgTag** is an extension that adds `<img>` tag and `{{#img:}}` parser function support for MediaWiki 1.43+.
   - type: checkboxes
     id: preflight
     attributes:
-      label: 开始之前……
+      label: 开始之前…… Before you start...
       options:
-        - label: 我已在[漏洞追踪器](https://github.com/TopRealm/mediawiki-extensions-AddImgTag/issues)中搜索过我的建议，确定没有人提出过此建议<br>I double checked [Issues](https://github.com/TopRealm/MediaWiki/issues) and no one has suggested it.
+        - label: 我已在[Issues 页面](https://github.com/TopRealm/mediawiki-extensions-AddImgTag/issues)中搜索过，确定没有人报告过此问题<br>I have searched [Issues](https://github.com/TopRealm/mediawiki-extensions-AddImgTag/issues) and confirmed no one has reported this bug.
           required: true
   - type: dropdown
     id: urgency
@@ -30,31 +30,92 @@ body:
         - 高 High
     validations:
       required: true
+  - type: input
+    id: mediawiki_version
+    attributes:
+      label: MediaWiki 版本 MediaWiki Version
+      description: 您使用的 MediaWiki 版本 Your MediaWiki version
+      placeholder: "1.43.0"
+    validations:
+      required: true
+  - type: input
+    id: extension_version
+    attributes:
+      label: AddImgTag 扩展版本 Extension Version
+      description: AddImgTag 扩展版本 AddImgTag extension version
+      placeholder: "1.0.0"
+    validations:
+      required: false
+  - type: dropdown
+    id: bug_type
+    attributes:
+      label: 问题类型 Bug Type
+      description: 问题发生在哪个功能？ Which feature has the bug?
+      options:
+        - "<img> 标签解析 <img> tag parsing"
+        - "{{#img:}} 解析器函数 {{#img:}} parser function"
+        - "白名单功能 Whitelist feature"
+        - "黑名单功能 Blacklist feature"
+        - "配置相关 Configuration related"
+        - "其他 Other"
+    validations:
+      required: true
   - type: textarea
     id: description
     attributes:
-      label: 漏洞描述 Description
-      description: 具体描述漏洞 Describe the bug
+      label: 漏洞描述 Bug Description
+      description: 具体描述漏洞 Describe the bug in detail
+      placeholder: 详细描述遇到的问题...
     validations:
-      required: false
+      required: true
   - type: textarea
     id: reproducing
     attributes:
-      label: 复现方法 Reproduction
-      description: 你是如何触发这个问题的 How this bug happened? 
+      label: 复现步骤 Steps to Reproduce
+      description: 如何重现这个问题？ How to reproduce this bug?
+      placeholder: |
+        1. 安装 AddImgTag 扩展
+        2. 在页面中使用 <img src="..."> 标签
+        3. 看到错误...
     validations:
       required: true
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: 期望行为 Expected Behavior
+      description: 您期望发生什么？ What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: 实际行为 Actual Behavior
+      description: 实际发生了什么？ What actually happened?
+    validations:
+      required: true
+  - type: textarea
+    id: configuration
+    attributes:
+      label: 扩展配置 Extension Configuration
+      description: 您的 AddImgTag 相关配置 Your AddImgTag configuration settings
+      placeholder: |
+        $wgAddImgTagWhitelist = false;
+        $wgAddImgTagWhitelistDomainsList = [];
+        $wgAddImgTagBlacklist = false;
+        $wgAddImgTagBlacklistDomainsList = [];
+    validations:
+      required: false
   - type: textarea
     id: screenshots
     attributes:
       label: 截图 Screenshots
-      description: （选填）漏洞截图 (Optional)Bug Screenshots
+      description: （选填）相关截图 (Optional) Relevant screenshots
     validations:
       required: false
   - type: textarea
     id: other
     attributes:
-      label: 备注 P.S.
-      description: 还想告诉我们什么？ What else?
+      label: 其他信息 Additional Information
+      description: 还有什么想告诉我们的吗？ Any additional information?
     validations:
       required: false

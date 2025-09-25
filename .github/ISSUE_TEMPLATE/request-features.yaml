@@ -1,5 +1,5 @@
 name: 功能建议 Feature Request
-description: 提出新的建议。Suggest new features.
+description: 提出新的建议 Suggest new features.
 title: "[FEATURE]: "
 labels: ["enhancement"]
 assignees:
@@ -9,42 +9,97 @@ body:
   - type: markdown
     attributes:
       value: |
-        向档案馆提出更多功能建议。 Suggest more features about YouShou Archives.
+        向 AddImgTag 扩展提出更多功能建议。<br>Suggest more features for AddImgTag extension.
+
+        **AddImgTag** 是一个为 MediaWiki 1.43+ 添加 `<img>` 标签和 `{{#img:}}` 解析器函数支持的扩展。<br>**AddImgTag** is an extension that adds `<img>` tag and `{{#img:}}` parser function support for MediaWiki 1.43+.
   - type: checkboxes
     id: preflight
     attributes:
-      label: 开始之前……
+      label: 开始之前…… Before you start...
       options:
-        - label: 我已在[漏洞追踪器](https://github.com/TopRealm/mediawiki-extensions-AddImgTag/issues)中搜索过我的建议，确定没有人提出过此建议<br>I double checked [Issues](https://github.com/TopRealm/MediaWiki/issues) and no one has suggested it.
+        - label: 我已在[Issues 页面](https://github.com/TopRealm/mediawiki-extensions-AddImgTag/issues)中搜索过，确定没有人提出过此建议<br>I have searched [Issues](https://github.com/TopRealm/mediawiki-extensions-AddImgTag/issues) and confirmed no one has suggested this feature.
           required: true
-  - type: textarea
-    id: description
+  - type: dropdown
+    id: feature_category
     attributes:
-      label: 建议描述 Feture Description
-      description: 请描述你的建议。 Please describe your suggestions.
-      placeholder: 建议添加114514个功能
+      label: 功能类别 Feature Category
+      description: 您的建议属于哪个类别？ Which category does your suggestion belong to?
+      options:
+        - "标签支持 Tag Support"
+        - "解析器函数 Parser Function"
+        - "安全功能 Security Features"
+        - "配置选项 Configuration Options"
+        - "性能优化 Performance Optimization"
+        - "用户界面 User Interface"
+        - "其他 Other"
     validations:
       required: true
   - type: textarea
-    id: reproducing
+    id: description
     attributes:
-      label: 实现方法 How To Achieve This
-      description: 你认为可以实现的方法。Ways you think this feature can be achieved
-      placeholder: OAuth 启动！
+      label: 功能描述 Feature Description
+      description: 请详细描述您建议的功能 Please describe your suggested feature in detail
+      placeholder: 建议添加对更多 HTML 属性的支持，比如...
     validations:
-      required: false
-  - type: input
-    id: api
+      required: true
+  - type: textarea
+    id: use_case
     attributes:
-      label: 接口 APIS Or Docs
-      description: 你是否有便于实现这个功能的接口链接/文档？ Do you have any documents to achieve this?
-      placeholder: https://docs.github.com/cn/rest/reference/search
+      label: 使用场景 Use Case
+      description: 这个功能在什么情况下会用到？ In what scenarios would this feature be used?
+      placeholder: 当用户需要在 MediaWiki 页面中嵌入响应式图片时...
+    validations:
+      required: true
+  - type: textarea
+    id: current_limitation
+    attributes:
+      label: 当前限制 Current Limitation
+      description: 当前扩展有什么限制导致需要这个功能？ What current limitations make this feature necessary?
+      placeholder: 目前扩展不支持...
     validations:
       required: false
   - type: textarea
+    id: implementation_suggestion
+    attributes:
+      label: 实现建议 Implementation Suggestion
+      description: 您认为可以如何实现这个功能？ How do you think this feature could be implemented?
+      placeholder: 可以通过添加新的配置选项...
+    validations:
+      required: false
+  - type: textarea
+    id: examples
+    attributes:
+      label: 使用示例 Usage Examples
+      description: 提供一些这个功能如何使用的示例 Provide examples of how this feature would be used
+      placeholder: |
+        <img src="example.jpg" loading="eager" decoding="async">
+        或者
+        {{#img:example.jpg|loading=eager|decoding=async}}
+    validations:
+      required: false
+  - type: input
+    id: references
+    attributes:
+      label: 参考资料 References
+      description: 相关的文档、API 或其他参考资料 Related documentation, APIs, or other references
+      placeholder: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img
+    validations:
+      required: false
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 优先级 Priority
+      description: 您认为这个功能的优先级如何？ What do you think is the priority of this feature?
+      options:
+        - 低 Low
+        - 中 Medium
+        - 高 High
+    validations:
+      required: true
+  - type: textarea
     id: other
     attributes:
-      label: 备注 P.S.
-      description: 还想告诉我们什么？ What else?
+      label: 其他信息 Additional Information
+      description: 还有什么想告诉我们的吗？ Any additional information?
     validations:
       required: false
