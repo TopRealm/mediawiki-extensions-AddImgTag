@@ -27,11 +27,33 @@ class AddImgTagHook {
 			? $parser -> recursivePreprocess($rawContent, $frame) 
 			: $rawContent;
 
+		$args['src'] = $srcUrl;
 
-		$argsList = self::ImgParameterArray($srcUrl, $args);
+		$argsList = self::ImgParameterArray($args);
 
 		$url = parse_url($rawContent, PHP_URL_HOST);
 
+		$ListValidationResults = self::MeetTheList($config, $url);
+		if ($ListValidationResults) return $ListValidationResults;
+
+		return Html::element('img', $argsList);
+	}
+
+	public static function ImgParameterArray($args = []) {
+	    $defaults = [
+			'src'    => '',
+			'alt'    => '',
+			'title'  => '',
+			'loading' => 'lazy',
+			'width'  => '',
+			'height' => '',
+			'class'  => '',
+			'style'  => '',
+		];
+		return array_merge($defaults, $args);
+	}
+
+	public static function MeetTheList($config, $url) {
 		// 检查是否在白名单中
 		if ($config->get( 'AddImgTagWhitelist' )) {
 			if (!in_array($url,$config->get( 'AddImgTagWhitelistDomainsList' ))) {
@@ -50,20 +72,6 @@ class AddImgTagHook {
 			};
 		}
 
-		return Html::element('img', $argsList);
-	}
-
-	public static function ImgParameterArray($srcUrl, $args = []) {
-	    $defaults = [
-			'src'    => $srcUrl,
-			'alt'    => '',
-			'title'  => '',
-			'loading' => 'lazy',
-			'width'  => '',
-			'height' => '',
-			'class'  => '',
-			'style'  => '',
-		];
-		return array_merge($defaults, $args);
+		return false;
 	}
 }
