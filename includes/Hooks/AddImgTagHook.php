@@ -27,8 +27,9 @@ class AddImgTagHook {
 			? $parser -> recursivePreprocess($rawContent, $frame) 
 			: $rawContent;
 
+		$args['src'] = $srcUrl;
 
-		$argsList = self::ImgParameterArray($srcUrl, $args);
+		$argsList = self::ImgParameterArray($args);
 
 		$url = parse_url($rawContent, PHP_URL_HOST);
 

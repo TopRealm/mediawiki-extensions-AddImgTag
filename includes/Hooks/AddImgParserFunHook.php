@@ -12,8 +12,14 @@ class AddImgParserFunHook {
     }
 
     public static function renderImgTag( Parser $parser, ...$value) {
+        $value[0] = "src=$value[0]";
+        $tagvalue = [];
+        for($i = 0; $i < count($value); $i++) {
+            $keyValue = explode('=', $value[$i], 2);
+            $tagvalue[$keyValue[0]] = $keyValue[1];
+        }
 
-        $argsList =AddImgTagHook::ImgParameterArray($value[0], $value);
+        $argsList =AddImgTagHook::ImgParameterArray($tagvalue);
         $html = Html::element( 'img', $argsList);
 		$config = MediaWikiServices::getInstance()->getMainConfig();
         $url = parse_url($value[0] ? $value[0] : '', PHP_URL_HOST);

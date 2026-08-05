@@ -42,3 +42,21 @@ $wgAddImgTagBlacklistDomainsList = ['awajie.com'];
 // 通配符匹配
 $wgAddImgTagBlacklistDomainsList = ['*.spam-domain.com'];
 ```
+
+## AddImgTagSelfClosingTag
+在内容解析时将```<img>```替换为```<img/>```  
+其在工作时会遍历整个页面的内容，时间复杂度为O(n)，所以默认为false。
+
+```markdown
+==<nowiki | code | pre><img></nowiki | code | pre>== 
+↳ ==<nowiki | code | pre><img></nowiki | code | pre>==
+
+<img src="https://youshou.wiki" width="256px" height="256px" >
+↳ <img src="https://youshou.wiki" width="256px" height="256px" />
+
+<img src="https://youshou.wiki" width="256px" height="256px" />
+↳ <img src="https://youshou.wiki" width="256px" height="256px" />
+
+<img src="<img>" width="256px" height="256px" />
+↳ <img src="<img>" width="256px" height="256px" />
+```

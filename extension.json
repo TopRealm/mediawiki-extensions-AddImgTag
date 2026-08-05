@@ -12,13 +12,15 @@
 	"manifest_version": 2,
 	"AutoloadClasses": {
         	"AddImgTagHook": "includes/Hooks/AddImgTagHook.php",
-			"AddImgParserFunHook": "includes/Hooks/AddImgParserFunHook.php"
+			"AddImgParserFunHook": "includes/Hooks/AddImgParserFunHook.php",
+			"AddImgSelfClosingTag": "includes/Hooks/AddImgSelfClosingTag.php"
     	},
 	"Hooks": {
 		"ParserFirstCallInit": [
 			"AddImgTagHook::onParserFirstCallInit",
 			"AddImgParserFunHook::onParserFirstCallInit"
-		]
+		],
+		"ParserBeforeInternalParse": "AddImgSelfClosingTag::onParserBeforeInternalParse"
 	},
 	"ExtensionMessagesFiles": {
 		"AddImgTagAlias": "AddImgTag.alias.php"
@@ -44,6 +46,10 @@
 		"AddImgTagBlacklistDomainsList": {
 		    "descriptionmsg": "config-desc-addimgtagblacklistdomainslist",
 		    "value": []
+		},
+		"AddImgTagSelfClosingTag": {
+		    "descriptionmsg": "self-closing-tag",
+		    "value": false
 		}
 	}
 }
