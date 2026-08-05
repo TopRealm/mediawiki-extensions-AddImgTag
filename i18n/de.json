@@ -10,8 +10,8 @@
     "addimgtag-whitelist-notice": "Domain $1 ist nicht in der Whitelist.",
     "addimgtag-blacklist-notice": "Domain $1 ist in der Blacklist.",
     "config-desc-addimgtagwhitelist": "Whitelisting aktivieren oder nicht",
-    "config-desc-addimgtagwhitelistdomainslist": "Liste der gewhitelisteten Domains",
+    "config-desc-addimgtagwhitelistdomainslist": "Liste der gewhitelisteten Domains. Unterstützt Platzhalter (z.B. *.example.com für example.com und alle Subdomains)",
     "config-desc-addimgtagblacklist": "Blacklisting aktivieren oder nicht",
-    "config-desc-addimgtagblacklistdomainslist": "Liste der geblacklisteten Domains"
+    "config-desc-addimgtagblacklistdomainslist": "Liste der geblacklisteten Domains. Unterstützt Platzhalter (z.B. *.example.com für example.com und alle Subdomains)"
 
 }

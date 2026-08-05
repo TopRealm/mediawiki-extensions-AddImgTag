@@ -16,16 +16,29 @@ wfLoadExtension( 'AddImgTag' );
 
 白名单与黑名单冲突，都启用的情况下，白名单优先。
 
+## 域名匹配规则
+
+域名列表支持两种匹配模式：
+
+- **精确匹配**：`example.com` 仅匹配 `example.com`
+- **通配符匹配**：`*.example.com` 匹配 `example.com` 本身及其所有子域名（如 `www.example.com`、`img.example.com`）
+
 ## 白名单（默认禁用）
 
 ```php
 $wgAddImgTagWhitelist = true;
+// 精确匹配
 $wgAddImgTagWhitelistDomainsList = ['awajie.com'];
+// 通配符匹配（推荐）
+$wgAddImgTagWhitelistDomainsList = ['*.afdian.com', '*.youshou.wiki'];
 ```
 
 ## 黑名单（默认禁用）
 
 ```php
 $wgAddImgTagBlacklist = true;
+// 精确匹配
 $wgAddImgTagBlacklistDomainsList = ['awajie.com'];
+// 通配符匹配
+$wgAddImgTagBlacklistDomainsList = ['*.spam-domain.com'];
 ```

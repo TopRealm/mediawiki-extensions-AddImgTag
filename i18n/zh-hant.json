@@ -10,7 +10,7 @@
     "addimgtag-whitelist-notice": "網域 $1 不在白名單中。",
     "addimgtag-blacklist-notice": "網域 $1 在黑名單中。",
     "config-desc-addimgtagwhitelist": "是否啟用白名單",
-    "config-desc-addimgtagwhitelistdomainslist": "白名單網域列表",
+    "config-desc-addimgtagwhitelistdomainslist": "白名單網域列表。支援萬用字元（如 *.example.com 匹配 example.com 及所有子網域）",
     "config-desc-addimgtagblacklist": "是否啟用黑名單",
-    "config-desc-addimgtagblacklistdomainslist": "黑名單域名列表"
+    "config-desc-addimgtagblacklistdomainslist": "黑名單域名列表。支援萬用字元（如 *.example.com 匹配 example.com 及所有子網域）"
 }

@@ -10,7 +10,7 @@
     "addimgtag-whitelist-notice": "Domain $1 is not in the whitelist.",
     "addimgtag-blacklist-notice": "Domain $1 is in the blacklist.",
     "config-desc-addimgtagwhitelist": "Whether or not to enable whitelisting",
-    "config-desc-addimgtagwhitelistdomainslist": "List of whitelisted domain names",
+    "config-desc-addimgtagwhitelistdomainslist": "List of whitelisted domain names. Supports wildcards (e.g. *.example.com matches example.com and all subdomains)",
     "config-desc-addimgtagblacklist": "Whether or not to enable blacklisting",
-    "config-desc-addimgtagblacklistdomainslist": "List of blacklisted domain names"
+    "config-desc-addimgtagblacklistdomainslist": "List of blacklisted domain names. Supports wildcards (e.g. *.example.com matches example.com and all subdomains)"
 }
