@@ -106,9 +106,9 @@ class AddImgTagHook {
 		return false;
 	}
 
-	public static function ImgParameterArray($srcUrl, $args = []) {
+	public static function ImgParameterArray( array $args ) {
 	    $defaults = [
-			'src'    => $srcUrl,
+			'src'    => '',
 			'alt'    => '',
 			'title'  => '',
 			'loading' => 'lazy',

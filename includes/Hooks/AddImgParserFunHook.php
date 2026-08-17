@@ -22,7 +22,7 @@ class AddImgParserFunHook {
         $argsList =AddImgTagHook::ImgParameterArray($tagvalue);
         $html = Html::element( 'img', $argsList);
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-        $url = parse_url($value[0] ? $value[0] : '', PHP_URL_HOST);
+        $url = parse_url( $tagvalue['src'] ?? '', PHP_URL_HOST );
 
 		$ListValidationResults = AddImgTagHook::MeetTheList($config, $url);
 		if ($ListValidationResults) return $ListValidationResults;
